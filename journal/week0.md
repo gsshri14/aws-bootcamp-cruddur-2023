@@ -6,11 +6,11 @@
 - Link to Live stream: [week 0 - Free AWS Cloud Project Bootcamp](https://www.youtube.com/watch?v=SG8blanhAOg&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=12)
 
 ### 2. I watched Chirag's Week 0 - Spend Considerations Youtube video and followed along with the content.
-- ![Chirag's youtube video](./journal_assets/chirag youtube video.png)
+- ![Chirag youtube video](./journal_assets/chirag youtube video.png)
 - Link to Youtube video: [Watched Chirag's Week 0 - Spend Considerations] (https://www.youtube.com/watch?v=OVw3RrlP-sI&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=13)
 
 ### 3. I watched Ashish's Week 0 - Security Considerations Youtube video and followed along with the content.
-- ![Ashish's youtube video](./journal_assets/ashish youtube video.png)
+- ![Ashish youtube video](./journal_assets/ashish youtube video.png)
 - Link to Youtube video: [Watched Ashish's Week 0 - Security Considerations] (https://www.youtube.com/watch?v=4EMWBYVggQI&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=15)
 
 ### 4. I recreated conceptual diagram in Lucid Charts.
