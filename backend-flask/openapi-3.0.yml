@@ -44,7 +44,7 @@ paths:
                   $ref: '#/components/schemas/Activity'
   /api/activities:
     post:
-      description: Create a new activitiy eg. Creating a Crud
+      description: Create a new activity eg. Creating a Crud
       tags:
         - activities
       requestBody:

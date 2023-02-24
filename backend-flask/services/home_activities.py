@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, timezone
+
 class HomeActivities:
   def run():
     now = datetime.now(timezone.utc).astimezone()
@@ -40,5 +41,5 @@ class HomeActivities:
       'likes': 0,
       'replies': []
     }
-    ]
+]
     return results
