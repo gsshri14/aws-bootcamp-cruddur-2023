@@ -30,7 +30,7 @@
 ### 8. I created necessary AWS Credentials for future use.
 
 ### 9. I successfully installed AWS CLI on Gitpod.
-- During the installation, I had some difficulties. Therefore, I made some changes instead of using what Andrew Brown showed in this (https://www.youtube.com/watch?v=OdUnNuKylHg)  Youtube video.
+- During the installation, I had some difficulties. But, later I managed to install AWS CLI using what Andrew Brown showed in this (https://www.youtube.com/watch?v=OdUnNuKylHg) youtube video.
 - I used following commands step by step to install AWS CLI on Gitpod and on my local ubuntu machine.
 ```
 1. curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
