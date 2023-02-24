@@ -31,13 +31,14 @@
 
 ### 9. I successfully installed AWS CLI on Gitpod.
 - During the installation, I had some difficulties. Therefore, I made some changes instead of using what Andrew Brown showed in this (https://www.youtube.com/watch?v=OdUnNuKylHg)  Youtube video.
-- I used following commands step by step to install AWS CLI on Gitpod.
+- I used following commands step by step to install AWS CLI on Gitpod and on my local ubuntu machine.
 ```
-1. curl -fSsl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-2. unzip -qq awscliv2.zip
+1. curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+2. unzip awscliv2.zip
 3. sudo ./aws/install --update
 ```
 - ![AWS CLI on Gitpod](./journal_assets/aws cli_gitpod.png)
+- I also successfully installed AWS CLI on my local windows machine and played around with it.
 
 ### 10. I created a billing alarm successfully.
 - ![AWS billing alarm](./journal_assets/aws billing alarm.png)
