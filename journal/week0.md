@@ -21,13 +21,14 @@
 - ![Cruddur architectual diagramm](./journal_assets/cruddur_architectual_diagramm.png)
 - Link to the Lucid Charts: [cruddur architectual diagramm] (https://lucid.app/lucidchart/bbf61757-bfe2-4873-875f-a07b3d86cbad/edit?viewport_loc=-1394%2C-1573%2C5045%2C2223%2C0_0&invitationId=inv_f1937026-6a32-4939-87a0-cab8959d0581)
 
-### 6. I created an `admin (IAM) user`.
+### 6. I created an `admin (IAM) user` and set up MFA for it.
 - ![IAM admin user](./journal_assets/IAM_user_with_admin_rights.png)
 
 ### 7. I played around on `AWS CloudShell` and got to know it.
-- ![AWS_CloudShell_console](./journal_assets/aws_CloudShell_console.png)
+- ![AWS CloudShell console](./journal_assets/aws_CloudShell_console.png)
 
 ### 8. I created necessary `AWS Credentials` for future use.
+- ![AWS Credentials on AWS CLI](./journal_assets/aws-cli_on_gitpod.png)
 
 ### 9. I successfully installed `AWS CLI` on Gitpod and local machines.
 - During the installation, I had some difficulties. But, later I managed to install AWS CLI using what Andrew Brown shown in this (https://www.youtube.com/watch?v=OdUnNuKylHg) youtube video.
@@ -47,3 +48,4 @@
 - ![AWS budget](./journal_assets/aws_budget.png)
 - I created only one budget to be safe not exceeding the limit.
 - Going forward, I can create one more.
+
