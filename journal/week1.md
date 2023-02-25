@@ -85,8 +85,8 @@
 ### 3. I installed docker on my local machine and successfully created containers for all 4 images.
 - ![docker on local machine](./journal_assets/docker_on_local_machine.png)
 
-### 4. I launched an EC2 instance for Ubuntu with docker on AWS and pulled `frontend-react-js` image there to create a container from it.
-- ![image from docker hub on EC2 instance](./journal_assets/AWS_EC2_Docker.png)
+### 4. I launched an EC2 instance for Ubuntu with docker on AWS and pulled `gsshri14/backend-flask` image there to create a container from it.
+- ![image from docker hub on EC2 instance](./journal_assets/docker_on_ec2.png)
 
 
 
