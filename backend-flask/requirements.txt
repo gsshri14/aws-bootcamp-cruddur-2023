@@ -9,3 +9,6 @@ opentelemetry-exporter-otlp-proto-http
 opentelemetry-instrumentation-flask 
 opentelemetry-instrumentation-requests
 setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
+
+# AWS x-ray stuff
+aws-xray-sdk
