@@ -6,6 +6,9 @@ tracer = trace.get_tracer("home.activities")
 
 class HomeActivities:
   def run():
+  #def run(logger):  
+    # Just disabling to save spend on CloudWatch
+    #logger.info('HomeActivities')
     # Honeycomb stuff
     with tracer.start_as_current_span("home-activities-mock-data"):
       span = trace.get_current_span()
