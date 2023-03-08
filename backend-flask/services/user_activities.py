@@ -3,7 +3,7 @@ from aws_xray_sdk.core import xray_recorder
 
 class UserActivities:
   def run(user_handle):
-    try:
+    #try:
       # X-ray stuff -----
       #segment = xray_recorder.begin_segment("user_activities")
       model = {
@@ -35,7 +35,7 @@ class UserActivities:
      #}
       #segment.put_metadata('key', dict, 'namespace')
       #xray_recorder.end_subsegment()
-    finally:
+    #finally:
       # close the segment
       #xray_recorder.end_subsegment()
       return model
