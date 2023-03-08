@@ -33,8 +33,8 @@ class UserActivities:
       #  "now": now.isoformat(),
       #  "results-size": len(model['data'])
      #}
-      segment.put_metadata('key', dict, 'namespace')
-      xray_recorder.end_subsegment()
+      #segment.put_metadata('key', dict, 'namespace')
+      #xray_recorder.end_subsegment()
     finally:
       # close the segment
       #xray_recorder.end_subsegment()
