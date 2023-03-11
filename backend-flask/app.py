@@ -42,6 +42,8 @@ from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProces
 #LOGGER.info('test logs')
 
 # Rollbar stuff -----
+from time import strftime
+import os
 import rollbar
 import rollbar.contrib.flask
 from flask import got_request_exception
