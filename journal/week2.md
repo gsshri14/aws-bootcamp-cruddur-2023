@@ -10,7 +10,7 @@
 - Through this video, I learned how generous Honeycomb, Rollbar, & AWS X-ray are, to offer a free tier to learn & implement observability and tracing in this project.
 - I also successfully completed the `Pricing Quiz` at the end of this video.
 
-### 3. I watched Ashish's `Week 2 - Observability Security Considerations` Youtube video and followed along with the content.
+### 3. I watched Ashish's `Week 2 - Observability Security Considerations` YouTube video and followed along with the content.
 - Link to Youtube video: [week 2 - Observability Security Considerations](https://www.youtube.com/watch?v=bOf4ITxAcXc&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=31)
 - Through this video, I learned why observability of software is essential & also understood AWS CloudWatch way to trace the different metrics and monitor the application.
 - I also successfully completed the `Security Quiz` at the end of this video.
