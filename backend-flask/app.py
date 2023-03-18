@@ -14,6 +14,9 @@ from services.messages import *
 from services.create_message import *
 from services.show_activity import *
 
+# AWS Cognito verification stuff
+from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError 
+
 # Honeycomb -----------
 from opentelemetry import trace
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
@@ -69,6 +72,13 @@ app = Flask(__name__)
 # AWS x-ray stuff -----------
 #XRayMiddleware(app, xray_recorder)
 
+# AWS Cognito stuff
+cognito_jwt_token = CognitoJwtToken(
+    user_pool_id=os.getenv("AWS_COGNITO_USER_POOL_ID"), 
+    user_pool_client_id=os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID"), 
+    region=os.getenv("AWS_DEFAULT_REGION")
+    )
+
 # Initialize automatic instrumentation with Flask
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
@@ -76,12 +86,13 @@ RequestsInstrumentor().instrument()
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
 origins = [frontend, backend]
+
 cors = CORS(
-    app,
-    resources={r"/api/*": {"origins": origins}},
-    expose_headers="location,link",
-    allow_headers="content-type,if-modified-since",
-    methods="OPTIONS,GET,HEAD,POST"
+  app, 
+  resources={r"/api/*": {"origins": origins}},
+  headers=['Content-Type', 'Authorization'], 
+  expose_headers='Authorization',
+  methods="OPTIONS,GET,HEAD,POST"
 )
 
 # Cloudwatch 
@@ -158,6 +169,20 @@ def data_create_message():
 @app.route("/api/activities/home", methods=['GET'])
 #@xray_recorder.capture('activities_home')
 def data_home():
+    app.logger.debug(request.headers)
+    access_token = extract_access_token(request.headers)
+    try:
+        claims = cognito_jwt_token.verify(access_token)
+
+        # authenticated request
+        app.logger.debug('authenticated')
+        app.logger.debug(claims)
+        app.logger.debug(claims['username'])
+        data = HomeActivities.run(cognito_user_id=claims['username'])
+    except TokenVerifyError as e:
+        # unauthenticated request
+        app.logger.debug(app)
+        app.logger.debug('unauthenticated')
     data = HomeActivities.run()
     return data, 200
 

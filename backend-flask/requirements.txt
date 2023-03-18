@@ -19,3 +19,6 @@ watchtower
 # rollbar stuff
 blinker
 rollbar
+
+# AWS Congnito stuff
+Flask-AWSCognito
