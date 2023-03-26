@@ -22,3 +22,7 @@ rollbar
 
 # AWS Congnito stuff
 Flask-AWSCognito
+
+# Postgres stuff
+psycopg[binary]
+psycopg[pool]
