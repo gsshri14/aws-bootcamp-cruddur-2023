@@ -14,7 +14,7 @@ if [ "$1" = "prod" ]; then
     echo "using prodcution"
     URL=$PROD_CONNECTION_URL
 else
-    URL=$CONNECTIOn_URL
+    URL=$CONNECTION_URL
 fi
 
 psql $URL cruddur < $schema_path

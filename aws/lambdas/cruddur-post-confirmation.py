@@ -8,28 +8,32 @@ def lambda_handler(event, context):
     print(user)
 
     user_display_name = user['name']
-    user_handle = user['preferred_username']
     user_email = user['email']
+    user_handle = user['preferred_username']
     user_cognito_id = user['sub']
+    
+    conn = None
 
     try:
-        conn = psycopg2.connect(os.getenv('CONNECTION_URL'))
-        cur = conn.cursor()
-
         sql = f"""
-        INSERT INTO public.users (display_name,
-                            email, 
+        INSERT INTO public.users (
+                            display_name,
+                            email,
                             handle, 
-                            cognito_user_id) 
-                            VALUES('{user_display_name}',
-                                   '{user_email}', 
-                                   '{user_handle}', 
-                                   '{user_cognito_id}'
-                                   ),
+                            cognito_user_id
+                            ) 
+                            VALUES(
+                            '{user_display_name}',
+                            '{user_email}', 
+                            '{user_handle}', 
+                            '{user_cognito_id}'
+                            )
         """
 
         print('SQL Statement')
-        print(sql) 
+        print(sql)
+        conn = psycopg2.connect(os.getenv('CONNECTION_URL'))
+        cur = conn.cursor() 
         cur.execute(sql)
         conn.commit() 
 
@@ -41,5 +45,4 @@ def lambda_handler(event, context):
             cur.close()
             conn.close()
             print('Database connection closed.')
-
     return event
