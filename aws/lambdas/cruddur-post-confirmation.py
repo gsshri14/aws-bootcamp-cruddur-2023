@@ -32,7 +32,7 @@ def lambda_handler(event, context):
 
         print('SQL Statement')
         print(sql)
-        conn = psycopg2.connect(os.getenv('CONNECTION_URL'))
+        conn = psycopg2.connect("postgresql://cruddurroot:963900ShRi@cruddur-db-instance.ccuej7zgodpx.us-east-1.rds.amazonaws.com:5432/cruddur")
         cur = conn.cursor() 
         cur.execute(sql)
         conn.commit() 
