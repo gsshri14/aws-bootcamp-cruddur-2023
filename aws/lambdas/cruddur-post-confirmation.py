@@ -17,24 +17,26 @@ def lambda_handler(event, context):
     try:
         sql = f"""
         INSERT INTO public.users (
-                            display_name,
-                            email,
-                            handle, 
-                            cognito_user_id
-                            ) 
-                            VALUES(
-                            '{user_display_name}',
-                            '{user_email}', 
-                            '{user_handle}', 
-                            '{user_cognito_id}'
-                            )
+            display_name,
+            email,
+            handle, 
+            cognito_user_id
+            ) 
+        VALUES(%s, %s, %s, %s)
         """
 
         print('SQL Statement')
         print(sql)
         conn = psycopg2.connect("postgresql://cruddurroot:963900ShRi@cruddur-db-instance.ccuej7zgodpx.us-east-1.rds.amazonaws.com:5432/cruddur")
         cur = conn.cursor() 
-        cur.execute(sql)
+        params = [
+            user_display_name,
+            user_email, 
+            user_handle, 
+            user_cognito_id
+        ]
+
+        cur.execute(sql, *params)
         conn.commit() 
 
     except (Exception, psycopg2.DatabaseError) as error:
