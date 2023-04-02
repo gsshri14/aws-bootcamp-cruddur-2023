@@ -2,6 +2,7 @@ from psycopg_pool import ConnectionPool
 import os
 import re
 import sys
+from flask import current_app as app
 
 connection_url = os.getenv("CONNECTION_URL")
 pool = ConnectionPool(connection_url)
@@ -19,48 +20,56 @@ class Db:
     connection_url = os.getenv("CONNECTION_URL")
     self.pool = ConnectionPool(connection_url)
 
+  def template(self, *args):
+    pathing = list((app.root_path, 'db', 'sql',) + args)
+    pathing[-1] = pathing[-1] + ".sql"
+    print("pathing: ")
+    print(pathing)
+
+    template_path = os.path.join(*pathing)
+    with open(template_path, 'r') as f:
+      template_content = f.read()
+    return template_content
+
+  def print_sql(self, title, sql):
+    cyan = '\033[96m]'
+    no_color = '\033[0m]'
+    print(f'{cyan}SQL STATEMENT --[{title}]--{no_color}')
+    print(sql + '\n')
+
 # we want to commit data such as an insert
 # be sure to check for RETURNING in all uppercases
-  def query_commit(self, sql, params):
+  def query_commit(self, sql, params={}):
+    self.print_sql('commit with returning', sql)
     print("SQL STATEMENT [commit with returning]-------")
     print(sql + "\n")
     pattern = r"\bRETURNING\b"
     is_returning_id = re.search(pattern, sql)
 
-    if match:
+    if is_returning_id:
       print("Found a match")
     else:
       print("No match found")
 
     try:
-      conn= self.pool.connection()
-      cur = conn.cursor()
-      cur.execute(sql, params)
+      with self.pool.connection() as conn:
+        cur = conn.cursor()
+        cur.execute(sql, params)
 
-      if is_returning_id:
-        returning_id = cur.fetchone()[0]
-      conn.commit()
+        if is_returning_id:
+          returning_id = cur.fetchone()[0]
+        conn.commit()
 
-      if is_returning_id:
-        return returning_id
+        if is_returning_id:
+          return returning_id
     
     except Exception as err:
       self.print_sql_err(err)
       #conn.rollback()
 
-  def query_commit(self, sql):
-    print("SQL STATEMENT [commit]-------")
-    try:
-      conn= pool.connection()
-      cur = conn.cursor()
-      cur.execute(sql)
-      conn.commit()
-    except Exception as err:
-      self.print_sql_err(err)
-      #conn.rollback()
-
 # when we want to return a json object
-  def query_array_json(self, sql):
+  def query_array_json(self, sql, params={}):
+    self.print_sql('array', sql)
     print("SQL Statement [array]----------------")
     print(sql + "\n")
     print("")
@@ -68,12 +77,13 @@ class Db:
     wrapped_sql = self.query_wrap_array(sql)
     with self.pool.connection() as conn:
       with conn.cursor() as cur:
-        cur.execute(wrapped_sql)
+        cur.execute(wrapped_sql, params)
         json = cur.fetchone()
         return json[0]
 
 # when we want to return an array of json objects  
-  def query_object_json(self, sql):
+  def query_object_json(self, sql, params={}):
+    self.print_sql('json', sql)
     print("SQL Statement [object] ----------------")
     print(sql + "\n")
     print("")
@@ -81,9 +91,12 @@ class Db:
     wrapped_sql = self.query_wrap_object(sql)
     with self.pool.connection() as conn:
       with conn.cursor() as cur:
-        cur.execute(wrapped_sql)
+        cur.execute(wrapped_sql, params)
         json = cur.fetchone()
-        return json[0]  
+        if json == None:
+          None
+        else:
+          return json[0]  
 
   def query_wrap_object(self, template):
     sql = f"""
