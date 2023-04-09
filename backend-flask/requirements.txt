@@ -26,3 +26,6 @@ Flask-AWSCognito
 # Postgres stuff
 psycopg[binary]
 psycopg[pool]
+
+# DynamoDB stuff
+boto3
