@@ -11,6 +11,6 @@
       ),
       
       %(message)s, 
-      %(expires_At)s
+      %(expires_at)s
     ) 
     RETURNING uuid;
