@@ -42,12 +42,15 @@ def get_my_user_uuids():
 
 my_user_uuid = "7d95b980-7bbc-4e25-93e0-3994f87dfae5"
 
+year = str(datetime.now().year)
+
 # define the query parameters
 query_params = {
   'TableName': table_name,
-  'KeyConditionExpression': 'pk = :pk',
+  'KeyConditionExpression': 'pk = :pk AND begins_with(sk, :year)',
   'ScanIndexForward': False,
   'ExpressionAttributeValues': {
+    ':year': {'S': year},
     ':pk': {'S': f"GRP#{my_user_uuid}"}
   },
   'ReturnConsumedCapacity': 'TOTAL'
