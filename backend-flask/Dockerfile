@@ -1,4 +1,4 @@
-FROM python:3.10-slim-buster
+FROM python:3.13.0a4-slim
 
 # Directory within the container
 WORKDIR /backend-flask
